@@ -1,0 +1,28 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}🎬 Tạo Phim Mới{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">🎬 Tạo Phim Mới</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label class="form-label">📌 Tên phim:</label>
+            <input type="text" name="title" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">📝 Mô tả:</label>
+            <textarea name="description" class="form-control" rows="4" required></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">🎞 Chọn file video (.mp4):</label>
+            <input type="file" name="file" accept="video/mp4" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-success w-100">⬆️ Upload Phim</button>
+    </form>
+</div>
+{% endblock %}

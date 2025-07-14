@@ -1,0 +1,31 @@
+{% extends 'admin/base.html' %}
+{% block title %}✏️ Sửa Diễn Viên{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2 class="mb-4">✏️ Sửa Diễn Viên</h2>
+  <form action="" method="POST" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label class="form-label">👤 Tên diễn viên:</label>
+      <input type="text" name="name" value="{{ actor.name }}" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">📜 Tiểu sử:</label>
+      <textarea name="bio" rows="4" class="form-control" required>{{ actor.bio }}</textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">🖼 Ảnh đại diện hiện tại:</label><br>
+      <img src="{{ url_for('static', filename='uploads/actors/' + actor.avatar) }}" width="80" height="80" class="rounded">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">🔁 Cập nhật ảnh đại diện (tuỳ chọn):</label>
+      <input type="file" name="avatar" accept="image/*" class="form-control">
+    </div>
+
+    <button type="submit" class="btn btn-success w-100">Lưu thay đổi</button>
+  </form>
+</div>
+{% endblock %}

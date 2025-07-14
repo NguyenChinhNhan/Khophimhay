@@ -1,0 +1,26 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+  <h2>✍️ Tạo Bài Viết Mới</h2>
+  <form method="POST" action="{{ url_for('admin_create_post') }}">
+    <div class="mb-3">
+      <label for="title" class="form-label">Tiêu đề</label>
+      <input type="text" class="form-control" id="title" name="title" required>
+    </div>
+    <div class="mb-3">
+  <label class="form-label">📂 Thể loại:</label>
+  <select name="genre_id" class="form-select" required>
+    <option value="">-- Chọn thể loại --</option>
+    {% for genre in genres %}
+    <option value="{{ genre.id }}">{{ genre.name }}</option>
+    {% endfor %}
+  </select>
+</div>
+
+    <div class="mb-3">
+      <label for="content" class="form-label">Nội dung</label>
+      <textarea class="form-control" id="content" name="content" rows="6" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-success">Đăng bài</button>
+  </form>
+{% endblock %}

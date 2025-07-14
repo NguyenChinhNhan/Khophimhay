@@ -1,0 +1,81 @@
+{% extends 'admin/base.html' %}
+{% block title %}📂 Danh sách thể loại{% endblock %}
+{% block content %}
+<div class="container mt-4">
+  <h2>📂 Danh sách thể loại</h2>
+  <a href="{{ url_for('admin_create_genre') }}" class="btn btn-primary mb-3">➕ Thêm thể loại</a>
+
+  {% if genres %}
+    <!-- Thanh tìm kiếm -->
+<form method="get" class="row mb-3">
+  <div class="col-md-4">
+    <input type="text" name="search" value="{{ search }}" class="form-control" placeholder="🔍 Tìm thể loại...">
+  </div>
+  <div class="col-md-2">
+    <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+  </div>
+</form>
+
+  <table class="table table-striped">
+
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Tên</th>
+        <th>Mô tả</th>
+        <th>Hành động</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for genre in genres %}
+      <tr>
+        <td>{{ genre.id }}</td>
+        <td>{{ genre.name }}</td>
+        <td>{{ genre.description }}</td>
+        <td>
+          <a href="{{ url_for('admin_edit_genre', genre_id=genre.id) }}" class="btn btn-warning btn-sm">✏️</a>
+          <a href="{{ url_for('admin_delete_genre', genre_id=genre.id) }}" class="btn btn-danger btn-sm"
+             onclick="return confirm('Bạn chắc chắn muốn xoá?')">🗑</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+    <!-- Phân trang -->
+<nav>
+  <ul class="pagination">
+    {% if pagination.has_prev %}
+    <li class="page-item">
+      <a class="page-link" href="{{ url_for('admin_genres', page=pagination.prev_num, search=search) }}">«</a>
+    </li>
+    {% else %}
+    <li class="page-item disabled"><span class="page-link">«</span></li>
+    {% endif %}
+
+    {% for page_num in pagination.iter_pages() %}
+      {% if page_num %}
+        {% if page_num == pagination.page %}
+          <li class="page-item active"><span class="page-link">{{ page_num }}</span></li>
+        {% else %}
+          <li class="page-item"><a class="page-link" href="{{ url_for('admin_genres', page=page_num, search=search) }}">{{ page_num }}</a></li>
+        {% endif %}
+      {% else %}
+        <li class="page-item disabled"><span class="page-link">…</span></li>
+      {% endif %}
+    {% endfor %}
+
+    {% if pagination.has_next %}
+    <li class="page-item">
+      <a class="page-link" href="{{ url_for('admin_genres', page=pagination.next_num, search=search) }}">»</a>
+    </li>
+    {% else %}
+    <li class="page-item disabled"><span class="page-link">»</span></li>
+    {% endif %}
+  </ul>
+</nav>
+
+  {% else %}
+  <p class="text-muted">Chưa có thể loại nào.</p>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'admin/base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<h2>📊 Tình Hình Tổng Quan</h2>
+<div class="row">
+  <div class="col-md-3">
+    <div class="card text-bg-primary mb-3">
+      <div class="card-body">
+        <h5 class="card-title">👥 Người dùng mới</h5>
+        <p class="card-text">123 người</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card text-bg-success mb-3">
+      <div class="card-body">
+        <h5 class="card-title">🔥 Phim hot</h5>
+        <p class="card-text">Phim ABC</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card text-bg-warning mb-3">
+      <div class="card-body">
+        <h5 class="card-title">💰 Doanh thu</h5>
+        <p class="card-text">15,000,000đ</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card text-bg-danger mb-3">
+      <div class="card-body">
+        <h5 class="card-title">📦 Đơn hàng hôm nay</h5>
+        <p class="card-text">25 đơn</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

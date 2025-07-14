@@ -1,0 +1,37 @@
+{% extends "admin/base.html" %}
+
+{% block content %}
+<h2>🚨 Báo Cáo Vi Phạm</h2>
+
+<table class="table table-bordered table-striped mt-4">
+  <thead class="table-dark">
+    <tr>
+      <th>#</th>
+      <th>Người Báo Cáo</th>
+      <th>Loại Vi Phạm</th>
+      <th>Nội Dung</th>
+      <th>Thời Gian</th>
+      <th>Hành Động</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for report in reports %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{ report.reporter_name }}</td>
+      <td>{{ report.type }}</td>
+      <td>{{ report.content }}</td>
+      <td>{{ report.created_at.strftime('%d-%m-%Y %H:%M') }}</td>
+      <td>
+        <button class="btn btn-sm btn-danger">Xóa</button>
+        <button class="btn btn-sm btn-secondary">Xem chi tiết</button>
+      </td>
+    </tr>
+    {% else %}
+    <tr>
+      <td colspan="6" class="text-center">Không có báo cáo nào.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

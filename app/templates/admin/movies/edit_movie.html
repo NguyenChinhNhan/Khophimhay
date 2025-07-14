@@ -1,0 +1,18 @@
+{% extends 'admin/base.html' %}
+{% block content %}
+<div class="container mt-4">
+  <h3>✏️ Sửa phim</h3>
+  <form method="post">
+    <div class="mb-3">
+      <label class="form-label">Tên phim:</label>
+      <input type="text" name="title" class="form-control" value="{{ movie.title }}" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Mô tả:</label>
+      <textarea name="description" class="form-control" required>{{ movie.description }}</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">💾 Lưu thay đổi</button>
+    <a href="{{ url_for('admin_movies') }}" class="btn btn-secondary">← Quay lại</a>
+  </form>
+</div>
+{% endblock %}

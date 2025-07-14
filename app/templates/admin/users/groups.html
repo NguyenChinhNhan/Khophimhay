@@ -1,0 +1,17 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}👥 Nhóm Người Dùng{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2>👥 Nhóm người dùng</h2>
+  <ul class="list-group">
+    {% for group in groups %}
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        {{ group.name }}
+        <span class="badge bg-primary rounded-pill">{{ group.users|length }} người dùng</span>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

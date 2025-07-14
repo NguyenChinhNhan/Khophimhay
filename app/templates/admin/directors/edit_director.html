@@ -1,0 +1,33 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}✏️ Chỉnh Sửa Đạo Diễn{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">✏️ Chỉnh Sửa Đạo Diễn</h2>
+    <form action="{{ url_for('edit_director', director_id=director.id) }}" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label class="form-label">👤 Tên đạo diễn</label>
+            <input type="text" name="name" class="form-control" value="{{ director.name }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">🖼 Ảnh đại diện hiện tại</label><br>
+            {% if director.image %}
+                <img src="{{ url_for('static', filename='uploads/directors/' ~ director.image) }}"
+                     alt="Ảnh đạo diễn" class="img-thumbnail" style="max-height: 150px;">
+            {% else %}
+                <p>Không có ảnh</p>
+            {% endif %}
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">🖼 Cập nhật ảnh mới (tuỳ chọn)</label>
+            <input type="file" name="image" accept="image/*" class="form-control">
+        </div>
+
+        <button type="submit" class="btn btn-primary">💾 Cập nhật</button>
+        <a href="{{ url_for('admin_directors') }}" class="btn btn-secondary">← Quay lại</a>
+    </form>
+</div>
+{% endblock %}

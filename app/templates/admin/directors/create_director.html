@@ -1,0 +1,23 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}➕ Thêm Đạo Diễn{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">➕ Thêm Đạo Diễn</h2>
+    <form action="{{ url_for('admin_create_director') }}" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label class="form-label">👤 Tên đạo diễn</label>
+            <input type="text" name="name" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">🖼 Ảnh đại diện</label>
+            <input type="file" name="image" accept="image/*" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-success">💾 Lưu đạo diễn</button>
+        <a href="{{ url_for('admin_directors') }}" class="btn btn-secondary">← Quay lại</a>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'admin/base.html' %}
+{% block title %}👥 Quản Lý Nhóm Người Dùng{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">👥 Quản Lý Nhóm Người Dùng</h2>
+
+    <form method="POST" class="mb-4">
+        <div class="row">
+            <div class="col-md-4">
+                <input type="text" name="name" class="form-control" placeholder="Tên nhóm (VD: VIP 1)" required>
+            </div>
+            <div class="col-md-6">
+                <input type="text" name="description" class="form-control" placeholder="Mô tả nhóm">
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-success w-100">➕ Thêm Nhóm</button>
+            </div>
+        </div>
+    </form>
+
+    {% if groups %}
+    <table class="table table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Tên nhóm</th>
+                <th>Mô tả</th>
+                <th>Số lượng người dùng</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for group in groups %}
+            <tr>
+                <td>{{ group.id }}</td>
+                <td>{{ group.name }}</td>
+                <td>{{ group.description }}</td>
+                <td>{{ group.users|length }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="alert alert-info">Chưa có nhóm người dùng nào.</div>
+    {% endif %}
+</div>
+{% endblock %}

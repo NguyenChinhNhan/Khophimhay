@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Admin{% endblock %}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body>
+  <div class="d-flex">
+    <!-- Sidebar -->
+    <nav class="bg-dark text-white p-3 vh-100" style="width: 250px; overflow-y: auto;">
+      <h4 class="text-center">🎛 Admin Panel</h4>
+      <hr class="border-light">
+      <ul class="nav flex-column">
+
+        <li><a class="nav-link text-white" href="{{ url_for('admin_dashboard') }}">📊 Dashboard</a></li>
+        <li><a class="nav-link text-white" href="{{ url_for('admin_reports') }}">🚨 Báo cáo</a></li>
+
+        <!-- Bài viết -->
+        <li>
+          <a class="nav-link text-white" data-bs-toggle="collapse" href="#collapsePosts" role="button"
+             aria-expanded="false" aria-controls="collapsePosts">
+            📝 Bài viết
+          </a>
+          <div class="collapse {% if request.endpoint in ['admin_posts', 'admin_my_posts', 'admin_create_post'] %}show{% endif %}" id="collapsePosts">
+            <ul class="nav flex-column ms-3">
+              <li><a class="nav-link text-white" href="{{ url_for('admin_posts') }}">Tất cả bài viết</a></li>
+              <li><a class="nav-link text-white" href="{{ url_for('admin_my_posts') }}">Bài viết của tôi</a></li>
+              <li><a class="nav-link text-white" href="{{ url_for('admin_create_post') }}">Tạo bài viết</a></li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- Phim -->
+        <li>
+          <a class="nav-link text-white" data-bs-toggle="collapse" href="#collapseMovies" role="button"
+             aria-expanded="false" aria-controls="collapseMovies">
+            🎬 Phim
+          </a>
+          <div class="collapse {% if request.endpoint in ['admin_movies', 'admin_create_movie'] %}show{% endif %}" id="collapseMovies">
+            <ul class="nav flex-column ms-3">
+              <li><a class="nav-link text-white" href="{{ url_for('admin_movies') }}">Danh sách phim</a></li>
+              <li><a class="nav-link text-white" href="{{ url_for('admin_create_movie') }}">Tạo phim</a></li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- Diễn viên -->
+        <li>
+          <a class="nav-link text-white" data-bs-toggle="collapse" href="#collapseActors" role="button"
+             aria-expanded="false" aria-controls="collapseActors">
+            🎭 Diễn viên
+          </a>
+          <div class="collapse {% if request.endpoint in ['admin_actors', 'admin_create_actor'] %}show{% endif %}" id="collapseActors">
+            <ul class="nav flex-column ms-3">
+              <li><a class="nav-link text-white" href="{{ url_for('admin_actors') }}">Danh sách diễn viên</a></li>
+              <li><a class="nav-link text-white" href="{{ url_for('admin_create_actor') }}">Tạo diễn viên</a></li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- Đạo diễn -->
+        <li>
+          <a class="nav-link text-white" data-bs-toggle="collapse" href="#collapseDirectors" role="button"
+             aria-expanded="false" aria-controls="collapseDirectors">
+            🎬 Đạo diễn
+          </a>
+          <div class="collapse {% if request.endpoint in ['admin_directors', 'admin_create_director'] %}show{% endif %}" id="collapseDirectors">
+            <ul class="nav flex-column ms-3">
+              <li><a class="nav-link text-white" href="{{ url_for('admin_directors') }}">Danh sách đạo diễn</a></li>
+              <li><a class="nav-link text-white" href="{{ url_for('admin_create_director') }}">Tạo đạo diễn</a></li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- Người dùng -->
+        <li>
+          <a class="nav-link text-white" data-bs-toggle="collapse" href="#collapseUsers" role="button"
+             aria-expanded="false" aria-controls="collapseUsers">
+            👥 Người dùng
+          </a>
+          <div class="collapse {% if request.endpoint in ['admin_users', 'admin_user_groups'] %}show{% endif %}" id="collapseUsers">
+            <ul class="nav flex-column ms-3">
+              <li><a class="nav-link text-white" href="{{ url_for('admin_users') }}">Danh sách người dùng</a></li>
+              <li><a class="nav-link text-white" href="{{ url_for('admin_user_groups') }}">Nhóm người dùng</a></li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- Thể loại -->
+        <li><a class="nav-link text-white" href="{{ url_for('admin_genres') }}">📂 Thể loại</a></li>
+
+      </ul>
+    </nav>
+
+    <!-- Main content -->
+    <div class="p-4 w-100">
+      {% block content %}{% endblock %}
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
